@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>M Aurora Old Klang Road | Freehold Serviced Residence by Mah Sing | MYPropertyComparison</title>
-<meta name="description" content="M Aurora by Mah Sing: freehold serviced residence on Old Klang Road, KL. Two 46-storey towers, 1,544 units, 556 to 1,019 sq ft, from RM339,000*. Expected completion Sep 2030.">
+<meta name="description" content="M Aurora by Mah Sing: freehold serviced residence on Old Klang Road, KL. Two 46-storey towers, 1,544 units, 556 to 1,019 sq ft, from RM339,000*.">
 <link rel="canonical" href="https://m-aurora-by-mahsing.com/">
 <meta property="og:title" content="M Aurora, Old Klang Road | Freehold from RM339,000*">
 <meta property="og:description" content="Two 46-storey freehold towers by Mah Sing on Old Klang Road, Kuala Lumpur.">
@@ -466,6 +466,9 @@ html{scroll-padding-top:116px}
 @media (max-height:780px) and (min-width:761px){.hero .sub{display:none}.hero .price{margin-top:1.2rem}.hero .ctas{margin-top:1.4rem}}
 @media (max-width:760px){.hero h1{font-size:clamp(3.2rem,17vw,4.6rem)!important}.hero h1 .w1{-webkit-text-stroke-width:2.2px!important}.hero h1 .w2{letter-spacing:.22em!important}}
 
+@media (min-width:761px){
+  .hero-copy{top:120px!important;bottom:48px!important;display:flex;flex-direction:column;justify-content:center;padding-bottom:6vh}
+}
 /* per-type chips in the calculator */
 .calc-types{display:flex;flex-wrap:wrap;gap:.5rem}
 .calc-types button{padding:.55em 1em;border-radius:999px;border:1px solid var(--line);background:none;cursor:pointer;font-size:.85rem;color:var(--snow);transition:all .25s}
@@ -474,6 +477,22 @@ html{scroll-padding-top:116px}
 .calc-types button[aria-selected="true"] small{color:#34435f}
 .plan .from{font-family:var(--serif);font-size:1.5rem;color:var(--green);margin-top:.4rem}
 .plan .from small{font-family:var(--sans);font-size:.8rem;color:var(--mist);margin-left:.4rem}
+
+/* v5: slim layout list that matches the plan panel height */
+@media (min-width:1101px){
+  .picker{grid-template-columns:minmax(190px,230px) 1fr!important;align-items:stretch!important;gap:clamp(20px,2.4vw,32px)!important}
+  .types{display:flex!important;flex-direction:column;gap:.6rem}
+  .type{flex:1;min-height:0}
+  .plan{display:flex;align-items:center}
+  .plan>.swap{width:100%}
+}
+.type{display:flex!important;flex-direction:column;justify-content:center;align-items:flex-start;gap:.35rem;padding:.9rem 1.2rem!important}
+.type .t{min-width:0!important;font-size:1.55rem!important;line-height:1}
+.type .sq{font-size:.8rem;color:var(--mist)}
+.type .bar{width:100%;height:4px!important;margin-top:.2rem}
+.plan-grid{grid-template-columns:1.25fr 1fr!important}
+@media (max-width:1100px){.type .bd{display:none}.type .sq{white-space:nowrap;font-size:.75rem}.types{display:grid!important;grid-template-columns:repeat(5,1fr);gap:.5rem}.type{padding:.8rem .9rem!important}.type .t{font-size:1.25rem!important}}
+@media (max-width:640px){.types{grid-template-columns:repeat(5,minmax(104px,1fr));overflow-x:auto;padding-bottom:4px}.plan-grid{grid-template-columns:1fr!important}}
 </style>
 </head>
 <body>
@@ -523,7 +542,7 @@ html{scroll-padding-top:116px}
     <h1 id="heroTitle" aria-label="M Aurora"><span class="w w1">M</span><span class="w w2">AURORA</span></h1>
     <p class="sub">A freehold serviced residence by Mah Sing: two 46-storey towers, 1+1 to 4-bedroom homes, on the Old Klang Road corridor.</p>
     <div class="price"><strong>From RM339,000*</strong><small>Type A, 556 sq ft</small></div>
-    <div class="hero-facts"><span><b>Freehold</b>Tenure</span><span><b>556–1,019</b>Sq ft</span><span><b>Sep 2030</b>Completion</span></div>
+    <div class="hero-facts"><span><b>Freehold</b>Tenure</span><span><b>556–1,019</b>Sq ft</span><span><b>1+1 to 4</b>Bedrooms</span></div>
     <div class="ctas">
       <a href="#register" class="btn" data-cta="hero_register">Get the price list</a>
       <a href="#" class="btn ghost js-wa" data-cta="hero_whatsapp">WhatsApp enquiry</a>
@@ -552,7 +571,7 @@ html{scroll-padding-top:116px}
     <div class="stat"><b class="count" data-to="46">46</b><small>Storeys per tower</small></div>
     <div class="stat"><b><span class="count" data-to="5.24" data-dec="2">5.24</span> ac</b><small>Freehold site</small></div>
     <div class="stat"><b class="count" data-to="46">46</b><small>Named facilities</small></div>
-    <div class="stat"><b>2030</b><small>Expected completion, September</small></div>
+    <div class="stat"><b class="count" data-to="5">5</b><small>Layouts, 1+1 to 4 bedrooms</small></div>
   </div>
 </section>
 
@@ -716,7 +735,6 @@ html{scroll-padding-top:116px}
       <details><summary>Is M Aurora freehold?</summary><p>Yes. The land tenure is freehold, with no restrictions in interest listed in the advertising particulars.</p></details>
       <details><summary>What layouts are there?</summary><p>Five: Type A (1+1 bed, 1 bath, 556 sq ft), Type B (2 bed, 2 bath, 737 sq ft), Type C (3 bed with balcony, 2 bath, 858 sq ft), Type D (3 bed with balcony, 3 bath, 916 sq ft) and Type E (4 bed with balcony, 3 bath, 1,019 sq ft).</p></details>
       <details><summary>How much is a unit?</summary><p>The developer advertises prices from RM339,000*. The approved selling price range in the permit is RM492,960 to RM856,560 across both towers. Ask an agent for the current price list by layout.</p></details>
-      <details><summary>When is completion?</summary><p>September 2030, according to the advertising and sales permit.</p></details>
       <details><summary>How many car parks come with a unit?</summary><p>Between 1 and 3, depending on the unit.</p></details>
       <details><summary>What facilities are included?</summary><p>46 named facilities, including a 50m lap pool, gym, yoga studio, co-working space, glamping dome, Aurora Garden, a multi-purpose hall for badminton and pickleball, and a Sky Lounge with a function space.</p></details>
       <details><summary>Who is the developer?</summary><p>Major Land Development Sdn Bhd, a wholly-owned subsidiary of Mah Sing Group Berhad.</p></details>
@@ -878,7 +896,7 @@ html{scroll-padding-top:116px}
   frame();
 
   /* Marquee */
-  var names = ['Independent agent site, not the official Mah Sing website','Open for sale','From RM339,000*','Freehold serviced apartments','Old Klang Road, Kuala Lumpur','GreenRE Silver (provisional)','Completion Sep 2030'];
+  var names = ['Independent agent site, not the official Mah Sing website','Open for sale','From RM339,000*','Freehold serviced apartments','Old Klang Road, Kuala Lumpur','GreenRE Silver (provisional)'];
   var mq = document.getElementById('mq');
   names.concat(names).forEach(function(n){ var s = document.createElement('span'); s.textContent = n; mq.appendChild(s); });
 
@@ -910,7 +928,7 @@ html{scroll-padding-top:116px}
   TYPES.forEach(function(ty, i){
     var b = document.createElement('button');
     b.className = 'type'; b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', i === 0);
-    b.innerHTML = '<span class="t">Type ' + ty.t + '</span><span class="bar"><i style="--w:' + Math.round(ty.sq/1019*100) + '%"></i></span><span class="sq">' + ty.sq.toLocaleString('en-MY') + ' sq ft</span>';
+    b.innerHTML = '<span class="t">Type ' + ty.t + '</span><span class="sq">' + ty.sq.toLocaleString('en-MY') + ' sq ft<span class="bd"> · ' + ty.bed + ' bed</span></span><span class="bar"><i style="--w:' + Math.round(ty.sq/1019*100) + '%"></i></span>';
     b.addEventListener('click', function(){ show(i); track('floorplan_view', {type: 'Type ' + ty.t}); });
     typesEl.appendChild(b);
   });
