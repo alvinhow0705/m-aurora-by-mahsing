@@ -28,6 +28,7 @@
   gtag('js', new Date());
   gtag('config', 'G-EDVF9QYQPZ');
   gtag('config', 'AW-18344712116');
+  gtag('config', 'AW-18467245263');
 </script>
 <script>
 /* Journey tracking + Google Sheet leads, same as pages/ebook.html */
@@ -53,6 +54,7 @@ function recordLead(o){
   trackJourney("Submitted lead form",o.source); clearJourney();
   if(typeof gtag==='function'){
     gtag('event','conversion',{'send_to':'AW-18344712116/Cs7QCPikrdUcELSvuKtE','value':1.0,'currency':'MYR'});
+    gtag('event','conversion',{'send_to':'AW-18467245263/r3LQCLewmYEdEM-Z7-VE','value':1.0,'currency':'MYR'});
   }
 }
 trackJourney("Visited M Aurora page");
