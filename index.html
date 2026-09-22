@@ -14,7 +14,7 @@
 <meta name="theme-color" content="#050a1a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Jost:wght@200;300;400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Jost:wght@200;300;400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <!-- Google tag (gtag.js) : same IDs as the rest of MYPropertyComparison -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDVF9QYQPZ"></script>
@@ -456,6 +456,24 @@ html{scroll-padding-top:116px}
 .vr-links{display:flex;gap:.6rem;flex-wrap:wrap}
 .vr-links .btn{padding:.75em 1.3em;font-size:.8rem}
 @media (max-width:760px){.vr-tabs{grid-template-columns:repeat(5,minmax(96px,1fr));overflow-x:auto}.vr-stage{aspect-ratio:3/4}}
+
+/* v3 title: M and AURORA side by side, heavier strokes, no overlap with nav */
+.hero-copy{top:auto!important;bottom:clamp(56px,9vh,110px)!important;transform:none!important}
+.hero h1{display:flex!important;flex-direction:row!important;align-items:flex-end!important;gap:.18em;font-size:clamp(3.8rem,7.4vw,7rem)!important;line-height:.85!important;margin-top:.9rem}
+.hero h1 .w1{font-size:1em!important;font-weight:400!important;-webkit-text-stroke:3px #eef3ff!important;line-height:.8!important}
+.hero h1 .w1::after{right:-.16em!important;top:-.08em!important;width:.16em!important;height:.16em!important}
+.hero h1 .w2{font-size:.42em!important;font-weight:500!important;letter-spacing:.3em!important;margin:0 0 .02em .1em!important;padding:0!important;line-height:1!important}
+@media (max-height:780px) and (min-width:761px){.hero .sub{display:none}.hero .price{margin-top:1.2rem}.hero .ctas{margin-top:1.4rem}}
+@media (max-width:760px){.hero h1{font-size:clamp(3.2rem,17vw,4.6rem)!important}.hero h1 .w1{-webkit-text-stroke-width:2.2px!important}.hero h1 .w2{letter-spacing:.22em!important}}
+
+/* per-type chips in the calculator */
+.calc-types{display:flex;flex-wrap:wrap;gap:.5rem}
+.calc-types button{padding:.55em 1em;border-radius:999px;border:1px solid var(--line);background:none;cursor:pointer;font-size:.85rem;color:var(--snow);transition:all .25s}
+.calc-types button small{color:var(--mist);margin-left:.35em}
+.calc-types button[aria-selected="true"]{background:var(--snow);color:var(--night);border-color:var(--snow)}
+.calc-types button[aria-selected="true"] small{color:#34435f}
+.plan .from{font-family:var(--serif);font-size:1.5rem;color:var(--green);margin-top:.4rem}
+.plan .from small{font-family:var(--sans);font-size:.8rem;color:var(--mist);margin-left:.4rem}
 </style>
 </head>
 <body>
@@ -550,6 +568,7 @@ html{scroll-padding-top:116px}
     <div class="calc reveal" id="calc">
       <div class="calc-in">
         <h3>Estimate your monthly instalment</h3>
+        <div class="calc-types" role="tablist" id="calcTypes" aria-label="Choose a layout"></div>
         <label>Property price (RM)<input id="cPrice" type="text" inputmode="numeric" value="339,000"></label>
         <label>Loan <output id="oLoan">90%</output><input id="cLoan" type="range" min="10" max="90" step="5" value="90"></label>
         <label>Tenure <output id="oTen">35 years</output><input id="cTen" type="range" min="5" max="35" step="1" value="35"></label>
@@ -881,11 +900,11 @@ html{scroll-padding-top:116px}
 
   /* Layout picker */
   var TYPES = [
-    {t:'A', bed:'1+1', bath:1, sq:556, fit:'A compact home for urban professionals.'},
-    {t:'B', bed:'2', bath:2, sq:737, fit:'Two bedrooms and two bathrooms, suited to couples.'},
-    {t:'C', bed:'3', bath:2, sq:858, fit:'Three bedrooms with a balcony for growing families.'},
-    {t:'D', bed:'3', bath:3, sq:916, fit:'Three bedrooms, three bathrooms and a balcony.'},
-    {t:'E', bed:'4', bath:3, sq:1019, fit:'Four bedrooms with a balcony for multigenerational living.'}
+    {t:'A', price:339000, bed:'1+1', bath:1, sq:556, fit:'A compact home for urban professionals.'},
+    {t:'B', price:516000, bed:'2', bath:2, sq:737, fit:'Two bedrooms and two bathrooms, suited to couples.'},
+    {t:'C', price:601000, bed:'3', bath:2, sq:858, fit:'Three bedrooms with a balcony for growing families.'},
+    {t:'D', price:616000, bed:'3', bath:3, sq:916, fit:'Three bedrooms, three bathrooms and a balcony.'},
+    {t:'E', price:682000, bed:'4', bath:3, sq:1019, fit:'Four bedrooms with a balcony for multigenerational living.'}
   ];
   var typesEl = document.getElementById('types'), planEl = document.getElementById('plan');
   TYPES.forEach(function(ty, i){
@@ -902,10 +921,12 @@ html{scroll-padding-top:116px}
       '<figure class="fp" id="fp"><img alt="Type ' + ty.t + ' floor plan, ' + ty.sq + ' sq ft" id="fpImg"><figcaption class="fp-note">Tap to enlarge</figcaption>' +
         '<div class="fp-empty" id="fpEmpty"><b>Type ' + ty.t + ' floor plan</b><span>Ask us on WhatsApp and we will send it right away.</span></div></figure>' +
       '<div class="plan-info"><div class="big"><span class="count-sq">' + ty.sq.toLocaleString('en-MY') + '</span><small>sq ft</small></div>' +
+      '<div class="from">From RM' + ty.price.toLocaleString('en-MY') + '*<small>' + Math.round(ty.price/ty.sq) + ' psf</small></div>' +
       '<div class="specs"><div><b>' + ty.bed + '</b>Bedrooms</div><div><b>' + ty.bath + '</b>Bathrooms</div><div><b>Type ' + ty.t + '</b>Layout</div></div>' +
       '<p>' + ty.fit + '</p>' +
       '<div class="plan-btns"><a class="btn js-wa-type" href="#">Ask for Type ' + ty.t + ' pricing</a>' +
       '<button type="button" class="btn ghost js-vr-type" data-type="' + ty.t + '">Walk through in 360</button></div></div></div>';
+    if (window.setCalcType) window.setCalcType(ty.t);
     var fp = planEl.querySelector('#fp'), fpImg = planEl.querySelector('#fpImg'), src = IMG + 'm-aurora-plan-' + ty.t.toLowerCase() + '.jpg';
     ifImage(src, function(s){ fpImg.src = s; fp.classList.add('show'); fp.onclick = function(){ openLb(s); track('floorplan_view', {type: 'Type ' + ty.t, action: 'zoom'}); }; });
     var a = planEl.querySelector('.js-wa-type');
@@ -1034,10 +1055,26 @@ html{scroll-padding-top:116px}
     document.getElementById('cOut').textContent = rm(m);
     document.getElementById('cSub').textContent = 'Loan amount ' + rm(loan);
     var a = document.querySelector('.js-wa-calc');
-    a.href = waLink('Hi, I am looking at M Aurora. Price ' + rm(price) + ', ' + pct + '% loan over ' + yrs + ' years (about ' + rm(m) + ' a month). Can you advise on loan options?');
+    a.href = waLink('Hi, I am looking at M Aurora' + (calcTypesEl && calcTypesEl.querySelector('[aria-selected="true"]') ? ' Type ' + calcType : '') + '. Price ' + rm(price) + ', ' + pct + '% loan over ' + yrs + ' years (about ' + rm(m) + ' a month). Can you advise on loan options?');
   }
   [cLoan, cTen, cRate].forEach(function(x){ x.addEventListener('input', calc); });
-  cPrice.addEventListener('input', calc);
+  cPrice.addEventListener('input', function(){ calcTypesEl.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-selected', 'false'); }); calc(); });
+  var calcTypesEl = document.getElementById('calcTypes'), calcType = 'A';
+  TYPES.forEach(function(ty){
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('role','tab'); b.dataset.t = ty.t;
+    b.innerHTML = 'Type ' + ty.t + '<small>RM' + Math.round(ty.price/1000) + 'k</small>';
+    b.addEventListener('click', function(){ setCalcType(ty.t); track('calculator_type', {type: 'Type ' + ty.t}); });
+    calcTypesEl.appendChild(b);
+  });
+  function setCalcType(t){
+    var ty = TYPES.filter(function(x){ return x.t === t; })[0]; if (!ty) return;
+    calcType = t;
+    cPrice.value = ty.price.toLocaleString('en-MY');
+    calcTypesEl.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-selected', b.dataset.t === t); });
+    calc();
+  }
+  window.setCalcType = setCalcType;
+  setCalcType('A');
   cPrice.addEventListener('blur', function(){ var v = +cPrice.value.replace(/[^0-9.]/g,''); if (v) cPrice.value = Math.round(v).toLocaleString('en-MY'); });
   calc();
   var ca = document.querySelector('.js-wa-calc'); ca.target = '_blank'; ca.rel = 'noopener';
