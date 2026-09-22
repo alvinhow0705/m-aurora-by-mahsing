@@ -14,7 +14,7 @@
 <meta name="theme-color" content="#050a1a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Jost:wght@200;300;400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <!-- Google tag (gtag.js) : same IDs as the rest of MYPropertyComparison -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDVF9QYQPZ"></script>
@@ -411,6 +411,51 @@ html{scroll-padding-top:116px}
     -webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 45%);mask-image:linear-gradient(0deg,transparent 0%,#000 45%);-webkit-mask-composite:source-over;mask-composite:add}
 }
 .card{flex-basis:clamp(280px,34vw,480px);aspect-ratio:4/3}
+
+/* Logo-style title: thin geometric sans, outlined M like the M Aurora mark */
+.hero h1{font-family:'Jost','Manrope',sans-serif;font-weight:200;letter-spacing:0;line-height:.9;display:flex;flex-direction:column;align-items:flex-start}
+.hero h1 .w1{font-size:1.25em;font-weight:300;line-height:.82;color:transparent;-webkit-text-stroke:2px #eef3ff;text-shadow:0 0 30px rgba(94,242,176,.25);position:relative}
+.hero h1 .w1::after{content:"";position:absolute;right:-.12em;top:-.02em;width:.14em;height:.14em;background:radial-gradient(circle,#fff 0 18%,rgba(255,255,255,.6) 22%,transparent 60%);filter:drop-shadow(0 0 8px #fff)}
+.hero h1 .w2{font-style:normal;font-weight:300;font-size:.34em;letter-spacing:.52em;padding-left:.08em;margin-top:.35em}
+@media (max-width:760px){.hero h1{font-size:clamp(4.2rem,24vw,6rem)}.hero h1 .w1{-webkit-text-stroke-width:1.5px}}
+
+/* Layout panel with floor plan */
+.picker{grid-template-columns:minmax(260px,.8fr) 1.7fr}
+.plan-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(20px,3vw,36px);align-items:center}
+.plan .fp{display:block;position:relative;margin:0;border-radius:18px;overflow:hidden;background:transparent;border:1px dashed var(--line);aspect-ratio:1/1}
+.plan .fp.show{background:#fff;border:0}
+.plan .fp img{width:100%;height:100%;object-fit:contain;display:none;cursor:zoom-in;padding:10px}
+.plan .fp.show img{display:block}
+.plan .fp .fp-note{position:absolute;right:10px;bottom:10px;font-size:.72rem;color:#34435f;background:rgba(255,255,255,.85);padding:.25em .7em;border-radius:99px;display:none}
+.plan .fp.show .fp-note{display:block}
+.plan .fp .fp-empty{position:absolute;inset:0;display:grid;place-content:center;gap:.5rem;text-align:center;padding:1.4rem;color:var(--snow)}
+.plan .fp .fp-empty b{font-family:var(--serif);font-weight:400;font-size:1.5rem}
+.plan .fp .fp-empty span{font-size:.85rem;color:var(--mist)}
+.plan .fp.show .fp-empty{display:none}
+.plan .big{font-size:clamp(3.6rem,6vw,5.6rem)}
+.plan-btns{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+.plan-btns .btn{margin-top:0}
+@media (max-width:1100px){.picker{grid-template-columns:1fr}}
+@media (max-width:640px){.plan-grid{grid-template-columns:1fr}.plan .fp{aspect-ratio:1/1}}
+
+/* 360 show unit tours */
+.vr{text-align:left}
+.vr-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-top:2.6rem}
+.vr-tabs button{padding:.9rem 1rem;border-radius:16px;border:1px solid var(--line);background:rgba(238,243,255,.03);cursor:pointer;text-align:left;font-family:var(--serif);font-size:1.3rem;transition:all .3s}
+.vr-tabs button small{display:block;font-family:var(--sans);font-size:.75rem;color:var(--mist);margin-top:.15rem}
+.vr-tabs button[aria-selected="true"]{background:rgba(94,242,176,.1);border-color:rgba(94,242,176,.6)}
+.vr-stage{position:relative;margin-top:1.2rem;aspect-ratio:16/9;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(60% 70% at 50% 50%,rgba(155,123,255,.22),rgba(5,10,26,1) 75%)}
+.vr-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vr-start{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:1rem;text-align:center;padding:1rem}
+.vr-start .orb{margin:0;border:0;cursor:pointer;color:var(--snow)}
+.vr-start p{color:var(--mist)}
+.vr-hint{position:absolute;left:14px;top:14px;font-size:.78rem;background:rgba(5,10,26,.7);padding:.35em .9em;border-radius:99px;pointer-events:none}
+.vr-fs{position:absolute;right:14px;top:14px;background:rgba(5,10,26,.75);border:1px solid var(--line);color:var(--snow);padding:.45em 1em;border-radius:99px;font-size:.8rem;cursor:pointer}
+.vr-foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.2rem}
+.vr-foot .small{margin:0;font-size:.8rem;color:var(--mist)}
+.vr-links{display:flex;gap:.6rem;flex-wrap:wrap}
+.vr-links .btn{padding:.75em 1.3em;font-size:.8rem}
+@media (max-width:760px){.vr-tabs{grid-template-columns:repeat(5,minmax(96px,1fr));overflow-x:auto}.vr-stage{aspect-ratio:3/4}}
 </style>
 </head>
 <body>
@@ -427,6 +472,7 @@ html{scroll-padding-top:116px}
       <li><a href="#facilities">Facilities</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#location">Location</a></li>
+      <li><a href="#vr">360 VR</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <a href="#register" class="btn" data-cta="nav">Get price list</a>
@@ -456,13 +502,13 @@ html{scroll-padding-top:116px}
   </svg>
   <div class="hero-copy">
     <p class="kick">Old Klang Road, Kuala Lumpur</p>
-    <h1 id="heroTitle"><span class="w">M</span> <span class="w w2">Aurora</span></h1>
+    <h1 id="heroTitle" aria-label="M Aurora"><span class="w w1">M</span><span class="w w2">AURORA</span></h1>
     <p class="sub">A freehold serviced residence by Mah Sing: two 46-storey towers, 1+1 to 4-bedroom homes, on the Old Klang Road corridor.</p>
     <div class="price"><strong>From RM339,000*</strong><small>Type A, 556 sq ft</small></div>
     <div class="hero-facts"><span><b>Freehold</b>Tenure</span><span><b>556–1,019</b>Sq ft</span><span><b>Sep 2030</b>Completion</span></div>
     <div class="ctas">
       <a href="#register" class="btn" data-cta="hero_register">Get the price list</a>
-      <a href="#" class="btn ghost js-wa" data-cta="hero_whatsapp">WhatsApp an agent</a>
+      <a href="#" class="btn ghost js-wa" data-cta="hero_whatsapp">WhatsApp enquiry</a>
     </div>
   </div>
   <a href="#about" class="cue">SCROLL<i></i></a>
@@ -518,6 +564,27 @@ html{scroll-padding-top:116px}
       </div>
     </div>
     <p class="fine">*From RM339,000 is the starting price advertised by the developer and is subject to packages and terms. The approved selling price range (SPA) is RM492,960 to RM856,560. Prices vary by type, floor and view; ask an agent for the current price list.</p>
+  </div>
+</section>
+
+<section class="vr" id="vr">
+  <div class="wrap">
+    <h2 class="reveal">Step inside <em>the show units</em></h2>
+    <p class="lede reveal" style="margin-top:1.2rem">360 walk-throughs of every layout, filmed in the furnished show units. Drag to look around, tap the arrows to move between rooms.</p>
+    <div class="vr-tabs" role="tablist" id="vrTabs"></div>
+    <div class="vr-stage" id="vrStage">
+      <div class="vr-start" id="vrStart">
+        <button type="button" class="orb" id="vrOrb" aria-label="Start the 360 tour">360</button>
+        <p id="vrHint">Start the Type A show unit tour</p>
+      </div>
+    </div>
+    <div class="vr-foot">
+      <p class="small">360 tours by the developer's appointed studio. Show unit furnishings are for illustration only.</p>
+      <div class="vr-links">
+        <a class="btn ghost" id="vrNewTab" href="https://virtualtour.my/mah-sing/m-aurora/type-a-vr360" target="_blank" rel="noopener" data-cta="vr_newtab">Open full screen</a>
+        <a class="btn ghost" href="https://m-aurora.com.my/wp-content/themes/divi-child/M-Aurora-360VR-Aerial-2/index.html" target="_blank" rel="noopener" data-cta="vr_aerial">360 aerial view</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -600,7 +667,7 @@ html{scroll-padding-top:116px}
       <div class="loc-links">
         <a class="btn ghost" href="https://www.waze.com/ul?q=M%20Aurora%20Old%20Klang%20Road" target="_blank" rel="noopener" data-cta="waze">Waze</a>
         <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=M+Aurora+Old+Klang+Road+Kuala+Lumpur" target="_blank" rel="noopener" data-cta="gmaps">Google Maps</a>
-        <a class="btn ghost" href="https://m-aurora.com.my/360-vr/" target="_blank" rel="noopener" data-cta="vr_open">360 VR tour</a>
+        <a class="btn ghost" href="#vr" data-cta="vr_open">360 show unit tours</a>
       </div>
     </div>
     <iframe class="map reveal" title="M Aurora location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
@@ -672,7 +739,7 @@ html{scroll-padding-top:116px}
   </div>
 </footer>
 
-<a href="#" class="wa-float js-wa" data-cta="float_whatsapp" aria-label="WhatsApp an agent">
+<a href="#" class="wa-float js-wa" data-cta="float_whatsapp" aria-label="WhatsApp enquiry">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.5.7 4.8 2 6.8L3 29l6.8-2.2c1.9 1 4 1.6 6.2 1.6 7 0 12.7-5.7 12.7-12.7S23 3 16 3zm0 23.1c-2 0-3.9-.6-5.6-1.6l-.4-.2-4 1.3 1.3-3.9-.3-.4a10.4 10.4 0 1 1 9 4.8zm5.7-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 .8.4 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
 </a>
 <div class="mbar">
@@ -831,16 +898,24 @@ html{scroll-padding-top:116px}
   function show(i){
     var ty = TYPES[i];
     typesEl.querySelectorAll('.type').forEach(function(b, j){ b.setAttribute('aria-selected', j === i); });
-    planEl.innerHTML = '<div class="swap"><div class="big"><span class="count-sq">' + ty.sq.toLocaleString('en-MY') + '</span><small>sq ft</small></div>' +
+    planEl.innerHTML = '<div class="swap plan-grid">' +
+      '<figure class="fp" id="fp"><img alt="Type ' + ty.t + ' floor plan, ' + ty.sq + ' sq ft" id="fpImg"><figcaption class="fp-note">Tap to enlarge</figcaption>' +
+        '<div class="fp-empty" id="fpEmpty"><b>Type ' + ty.t + ' floor plan</b><span>Ask us on WhatsApp and we will send it right away.</span></div></figure>' +
+      '<div class="plan-info"><div class="big"><span class="count-sq">' + ty.sq.toLocaleString('en-MY') + '</span><small>sq ft</small></div>' +
       '<div class="specs"><div><b>' + ty.bed + '</b>Bedrooms</div><div><b>' + ty.bath + '</b>Bathrooms</div><div><b>Type ' + ty.t + '</b>Layout</div></div>' +
-      '<p>' + ty.fit + '</p><div class="fp" id="fp"><img alt="Type ' + ty.t + ' floor plan" id="fpImg"></div>' +
-      '<a class="btn js-wa-type" href="#">Ask for Type ' + ty.t + ' pricing</a></div>';
+      '<p>' + ty.fit + '</p>' +
+      '<div class="plan-btns"><a class="btn js-wa-type" href="#">Ask for Type ' + ty.t + ' pricing</a>' +
+      '<button type="button" class="btn ghost js-vr-type" data-type="' + ty.t + '">Walk through in 360</button></div></div></div>';
     var fp = planEl.querySelector('#fp'), fpImg = planEl.querySelector('#fpImg'), src = IMG + 'm-aurora-plan-' + ty.t.toLowerCase() + '.jpg';
     ifImage(src, function(s){ fpImg.src = s; fp.classList.add('show'); fp.onclick = function(){ openLb(s); track('floorplan_view', {type: 'Type ' + ty.t, action: 'zoom'}); }; });
     var a = planEl.querySelector('.js-wa-type');
-    a.href = waLink('Hi, I am interested in M Aurora Type ' + ty.t + ' (' + ty.bed + ' bed, ' + ty.sq + ' sq ft). Please share the pricing.');
+    a.href = waLink('Hi, I am interested in M Aurora Type ' + ty.t + ' (' + ty.bed + ' bed, ' + ty.sq + ' sq ft). Please share the pricing and floor plan.');
     a.target = '_blank'; a.rel = 'noopener';
     a.addEventListener('click', function(){ track('whatsapp_lead', {source: 'type_' + ty.t, project_1: PROJECT}); });
+    planEl.querySelector('.js-vr-type').addEventListener('click', function(){
+      if (window.openVR) window.openVR(ty.t);
+      var el = document.getElementById('vrTabs'); window.scrollTo({top: el.getBoundingClientRect().top + scrollY - 110, behavior: reduce ? 'auto' : 'smooth'});
+    });
   }
   show(0);
 
@@ -878,6 +953,37 @@ html{scroll-padding-top:116px}
   reel.addEventListener('mousemove', function(e){ if (!down) return; var d = e.pageX - dx0; if (Math.abs(d) > 5) dragged = true; reel.scrollLeft = sl - d; });
   mark(); restart();
 
+
+
+  /* 360 show unit tours */
+  var VR = {A:'https://virtualtour.my/mah-sing/m-aurora/type-a-vr360',B:'https://virtualtour.my/mah-sing/m-aurora/type-b-vr360',C:'https://virtualtour.my/mah-sing/m-aurora/type-c-vr360',D:'https://virtualtour.my/mah-sing/m-aurora/type-d-vr360',E:'https://virtualtour.my/mah-sing/m-aurora/type-e-vr360'};
+  var vrTabs = document.getElementById('vrTabs'), vrStage = document.getElementById('vrStage'), vrCur = 'A';
+  TYPES.forEach(function(ty){
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('role','tab'); b.dataset.t = ty.t;
+    b.innerHTML = 'Type ' + ty.t + '<small>' + ty.bed + ' bed, ' + ty.sq.toLocaleString('en-MY') + ' sq ft</small>';
+    b.addEventListener('click', function(){ openVR(ty.t); });
+    vrTabs.appendChild(b);
+  });
+  function markVR(t){
+    vrCur = t;
+    vrTabs.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-selected', b.dataset.t === t); });
+    document.getElementById('vrNewTab').href = VR[t];
+    var h = document.getElementById('vrHint'); if (h) h.textContent = 'Start the Type ' + t + ' show unit tour';
+  }
+  function openVR(t){
+    markVR(t);
+    vrStage.innerHTML = '<iframe src="' + VR[t] + '" title="M Aurora Type ' + t + ' 360 show unit tour" allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer" allowfullscreen loading="lazy"></iframe>' +
+      '<span class="vr-hint">Type ' + t + ' · drag to look around</span><button type="button" class="vr-fs">Full screen</button>';
+    vrStage.querySelector('.vr-fs').addEventListener('click', function(){
+      var f = vrStage.requestFullscreen || vrStage.webkitRequestFullscreen;
+      if (f) f.call(vrStage); else window.open(VR[t], '_blank');
+      track('virtual_tour_fullscreen', {type: 'Type ' + t});
+    });
+    track('virtual_tour_interact', {type: 'Type ' + t});
+  }
+  window.openVR = openVR;
+  markVR('A');
+  document.getElementById('vrOrb').addEventListener('click', function(){ openVR(vrCur); });
 
   /* Facility categories (numbers follow the developer's plans) */
   var CATS = [
