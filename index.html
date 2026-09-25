@@ -56,7 +56,32 @@ function recordLead(o){
     gtag('event','conversion',{'send_to':'AW-18344712116/Cs7QCPikrdUcELSvuKtE','value':1.0,'currency':'MYR'});
     gtag('event','conversion',{'send_to':'AW-18467245263/r3LQCLewmYEdEM-Z7-VE','value':1.0,'currency':'MYR'});
   }
+  try{sessionStorage.setItem("waConv","1");}catch(e){}
 }
+/* WhatsApp button clicks: log to the sheet + fire the Ads conversion once per visit */
+function recordWaClick(label){
+  var isMobile=/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  var utm=""; try{utm=localStorage.getItem("utm_source")||"Direct";}catch(e){utm="Direct";}
+  trackJourney("Clicked WhatsApp",label||"");
+  try{
+    sendToSheet({name:"WhatsApp click",phone:"",email:"",purpose:"",status:"New enquiry",project1:"M Aurora",project2:"",
+      source:"WhatsApp - "+(label||"button"),budget:"Direct",location:"Old Klang Road",device:isMobile?"Mobile":"Desktop",
+      pageurl:window.location.href,utm:utm,journey:getJourneySummary()});
+  }catch(e){}
+  var done=false; try{done=sessionStorage.getItem("waConv")==="1";}catch(e){}
+  if(!done&&typeof gtag==='function'){
+    gtag('event','conversion',{'send_to':'AW-18344712116/Cs7QCPikrdUcELSvuKtE','value':1.0,'currency':'MYR'});
+    gtag('event','conversion',{'send_to':'AW-18467245263/r3LQCLewmYEdEM-Z7-VE','value':1.0,'currency':'MYR'});
+    try{sessionStorage.setItem("waConv","1");}catch(e){}
+  }
+}
+document.addEventListener('click',function(e){
+  var t=e.target; if(!t||!t.closest) return;
+  var a=t.closest('a[href*="wa.me/"]'); if(!a) return;
+  if(!a.target){ a.target="_blank"; a.rel="noopener"; }
+  var label=a.getAttribute('data-cta')||a.getAttribute('data-wa')||(a.textContent||"").trim().slice(0,40)||"link";
+  recordWaClick(label);
+},true);
 trackJourney("Visited M Aurora page");
 </script>
 
